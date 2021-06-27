@@ -182,3 +182,19 @@ function send(data: string | number | null)  {
 
 send("hello world!");
 
+// The in operator narrowing
+
+// The in is used to loop through objects, use the property as a string to find it in the object
+
+let user = {
+    name: "Shade",
+    online: true,
+    swim: () => {
+        return "I can swim!";
+    }
+}
+
+if("swim" in user) {
+    console.log(user.swim())
+}
+console. log( "swim" in user);
