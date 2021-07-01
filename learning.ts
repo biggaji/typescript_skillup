@@ -421,4 +421,53 @@ console.log(BoolInterface({isInterface:true, isNotInterface:false}))
 
 // Generic Object type 
 
-// generic box declares a type parameter e.g Box<Type>  
+// generic box declares a type parameter e.g Box<Type>   that can be reuseable in tne context applied
+// exp
+
+interface Box<T> {
+    content: T; //so i can pass any type i want to any implementation that uses the Box interface as type
+}
+
+let box1:Box<string[]> = {
+    content: ["Tea", "Bread", "Golden morn"]
+}
+
+
+let box2:Box<string> = {
+    content: "Milo"
+}
+
+box1.content.push("Biscuit");
+console.log(box1.content.push("Wine"))
+console.log(box1.content)
+console.log(box2.content)
+
+// Box is reusable in that Type can be substituted with anything. That means that when we need a box for a new type, we don’t need to declare a new Box type at all (though we certainly could if we wanted to).
+// type alias are also generic
+
+type Data<T> = {
+    info: T
+}
+
+let data1: Data<string> = {
+    info: "Some info"
+}
+console.log(data1.info)
+
+// Array type
+
+// When ever we write string[] or number[], it is actually a shorthand for Array<string> and Array<number>
+// Array itself is a generic type
+
+function someArr(arr: Array<string>) {
+    return arr.length;
+}
+
+console.log(someArr(["Some", "Salt"]));
+
+new Promise((res,rej) => {
+    res("A generic promise")
+})
+.then(r => {
+    console.log(r)
+})

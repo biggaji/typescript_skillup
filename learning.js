@@ -234,5 +234,30 @@ function BoolInterface(bool) {
     return bool;
 }
 console.log(BoolInterface({ isInterface: true, isNotInterface: false }));
-// Generic Object type 
-// generic box declares a type parameter e.g Box<Type>  
+let box1 = {
+    content: ["Tea", "Bread", "Golden morn"]
+};
+let box2 = {
+    content: "Milo"
+};
+box1.content.push("Biscuit");
+console.log(box1.content.push("Wine"));
+console.log(box1.content);
+console.log(box2.content);
+let data1 = {
+    info: "Some info"
+};
+console.log(data1.info);
+// Array type
+// When ever we write string[] or number[], it is actually a shorthand for Array<string> and Array<number>
+// Array itself is a generic type
+function someArr(arr) {
+    return arr.length;
+}
+console.log(someArr(["Some", "Salt"]));
+new Promise((res, rej) => {
+    res("A generic promise");
+})
+    .then(r => {
+    console.log(r);
+});
