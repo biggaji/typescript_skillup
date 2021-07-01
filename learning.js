@@ -224,4 +224,15 @@ function signup(info) {
     };
 }
 console.log(signup({ username: "biggaji", name: "Tobiloba Ajibade", password: "123", age: 21 }));
-// The extends keyword on an interface allows us to effectively copy members from other named types, and add whatever new members we want.
+function logUserIn(user) {
+    return `You have successfully logged in ${user.username}`;
+}
+console.log(logUserIn({ username: "biggaji", password: "123", rememberMe: true }));
+// someOtherInterface and someInterface has been intersected to a new type that contains both members of someInterface and someOtherInterface
+// implementation
+function BoolInterface(bool) {
+    return bool;
+}
+console.log(BoolInterface({ isInterface: true, isNotInterface: false }));
+// Generic Object type 
+// generic box declares a type parameter e.g Box<Type>  
