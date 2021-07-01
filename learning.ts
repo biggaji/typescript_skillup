@@ -305,7 +305,7 @@ console.log(logError({errorData:d}))
 
 // Property modifier
 
-//  Optional property
+//  Optional properies
 
 // All optionality really says is that if the property is set, it better have a specific type.
 
@@ -320,3 +320,55 @@ shoe = {
     name: "Gucci"
 }
 console.log(shoe.name)
+
+
+// readonly properties
+
+// Properties marked as readonly can't be written to during type checking, it value can't be changed outside it context or re-assigned
+type readOnlyName = {
+    readonly name: string; //can't be reassigned
+}
+
+let myName:readOnlyName = {
+    name:"Tobiloba Ajibade"
+}
+
+console.log(myName.name);
+
+// Extending types
+// Example is a string validator that has basic properties an email validator needs, so an email validator extends it and add it own unique properties.
+// e.g
+
+interface basicLoginInfo {
+    username: string;
+    password: string;
+}
+
+// An signup interface extends the basicLoginInfo interface
+
+interface signUpInfo extends basicLoginInfo {
+    name:string;
+    age?: number;
+}
+
+// IMPLEMENTATIOM
+
+type signupRes = {
+  username: string;
+  name: string;
+  password: string;
+  age?: number;
+};
+
+function signup(info: signUpInfo) : signupRes {
+    return {
+        username:info.username,
+        name: info.name,
+        password: info.password,
+        age: info.age? info.age : undefined
+    }
+}
+
+console.log(signup({username: "biggaji",name: "Tobiloba Ajibade", password: "123", age: 21}))
+
+// The extends keyword on an interface allows us to effectively copy members from other named types, and add whatever new members we want.
