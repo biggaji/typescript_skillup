@@ -211,3 +211,17 @@ shoe = {
     name: "Gucci"
 };
 console.log(shoe.name);
+let myName = {
+    name: "Tobiloba Ajibade"
+};
+console.log(myName.name);
+function signup(info) {
+    return {
+        username: info.username,
+        name: info.name,
+        password: info.password,
+        age: info.age ? info.age : undefined
+    };
+}
+console.log(signup({ username: "biggaji", name: "Tobiloba Ajibade", password: "123", age: 21 }));
+// The extends keyword on an interface allows us to effectively copy members from other named types, and add whatever new members we want.
