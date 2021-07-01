@@ -372,3 +372,53 @@ function signup(info: signUpInfo) : signupRes {
 console.log(signup({username: "biggaji",name: "Tobiloba Ajibade", password: "123", age: 21}))
 
 // The extends keyword on an interface allows us to effectively copy members from other named types, and add whatever new members we want.
+
+
+// interface can also extend from multiply types, it inherits members from both types
+// You seperate each type by comma
+
+interface basic {
+    username: string
+}
+
+interface intermidiate {
+    password: string
+}
+
+interface loginInterface extends basic, intermidiate {
+    rememberMe?: boolean
+}
+
+function logUserIn(user: loginInterface) {
+    return `You have successfully logged in ${user.username}`;
+}
+
+console.log(logUserIn({username:"biggaji", password:"123", rememberMe: true}));
+
+// intersection types
+
+// Intersection type are mainly used to combine an existing object types, it is defined using the & operator
+
+interface someInterface {
+    isInterface: boolean
+}
+
+interface someOtherInterface {
+    isNotInterface: boolean
+}
+
+type BothInterface = someInterface & someOtherInterface;
+
+// someOtherInterface and someInterface has been intersected to a new type that contains both members of someInterface and someOtherInterface
+
+// implementation
+
+function BoolInterface (bool: BothInterface) {
+    return bool;
+}
+
+console.log(BoolInterface({isInterface:true, isNotInterface:false}))
+
+// Generic Object type 
+
+// generic box declares a type parameter e.g Box<Type>  
