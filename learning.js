@@ -131,7 +131,7 @@ function send(data) {
 ;
 send("hello world!");
 // The in operator narrowing
-// The in is used to loop through objects, use the property as a string to find it in the object
+// The in  operator is used to loop through objects, use the property as a string to find it in the object
 let user = {
     name: "Shade",
     online: true,
@@ -143,3 +143,14 @@ if ("swim" in user) {
     console.log(user.swim());
 }
 console.log("swim" in user);
+// Instance of narrowing
+// the instanceof operator is used to check if an value is an instance of an object
+// it can also be used a typeguards
+// assignment
+// control flow analysis
+// using type predicates    
+// type predicates is used to define a custom typeguard
+// To define a user-defined type guard, we simply need to define a function whose return type is a type predicate:
+// exp
+// More on functions
+// Modules
