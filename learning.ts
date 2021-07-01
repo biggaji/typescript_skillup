@@ -219,3 +219,104 @@ console.log( "swim" in user);
     
 // Any script that has a top level import or export keyword is treated as a module, modules contents are not available in the global scope
 // They are private to is own script
+
+
+// Object type
+
+// Object types can be anoynimous or be name via interface or via type alias
+// eg
+// A Person object passed to a function as an argument
+
+// Explicitly passing it to the parameter
+
+function sayName(person: {name: string, age?: number}) {
+    return "Hey! " + person.name;
+}
+
+// or via interface
+
+interface Person {
+    name:string;
+    age?:number;
+}
+
+function sayNameInt(person:Person) {
+  return "Hey! " + person.name;
+}
+
+// or via type alias
+
+type person  = {
+    name: string,
+    age?: number
+}
+
+function sayNameType(person: person) {
+  return "Hey! " + person.name;
+}
+
+console.log(sayName({name: "Tobi"}));
+console.log(sayNameInt({ name: "Tobint" }));
+console.log(sayNameType({ name: "Tobitype" }));
+type dataType = "json"| "raw";
+
+interface ResponseTyped {
+    type: string | dataType,
+    message?: string,
+    code?: number 
+}
+
+
+type errorRes = {
+    errorData:ResponseTyped
+}
+
+function logError(err: errorRes) {
+    if(err.errorData.type === "json") {
+        if(err.errorData && err.errorData.message !== undefined ) {
+            return {
+            errorType: err.errorData.type,
+            message: err.errorData.message
+            };    
+        }
+        else if(err.errorData && err.errorData.code !== undefined) {
+                return {
+                errorType: err.errorData.type,
+                code: err.errorData.code
+                };
+        } else if(err.errorData && err.errorData.message !== undefined && err.errorData.code !== undefined) {
+            return {
+            errorType: err.errorData.type,
+            message: err.errorData.message,
+            code: err.errorData.code
+            };
+        } else {
+                return {}
+    }
+} else {
+    return err.errorData
+}
+}
+
+let d = {
+    type: "js"
+}
+console.log(logError({errorData:d}))
+
+// Property modifier
+
+//  Optional property
+
+// All optionality really says is that if the property is set, it better have a specific type.
+
+type nons = {
+    name: string,
+    isNons?: boolean
+}
+
+let shoe:nons;
+
+shoe = {
+    name: "Gucci"
+}
+console.log(shoe.name)
