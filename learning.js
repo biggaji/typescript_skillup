@@ -181,21 +181,18 @@ function logError(err) {
                 message: err.errorData.message
             };
         }
-        else if (err.errorData && err.errorData.code !== undefined) {
+        if (err.errorData && err.errorData.code !== undefined) {
             return {
                 errorType: err.errorData.type,
                 code: err.errorData.code
             };
         }
-        else if (err.errorData && err.errorData.message !== undefined && err.errorData.code !== undefined) {
+        if (err.errorData && err.errorData.message !== undefined && err.errorData.code !== undefined) {
             return {
                 errorType: err.errorData.type,
                 message: err.errorData.message,
                 code: err.errorData.code
             };
-        }
-        else {
-            return {};
         }
     }
     else {
@@ -203,7 +200,9 @@ function logError(err) {
     }
 }
 let d = {
-    type: "js"
+    type: "json",
+    message: "Some error message",
+    code: 3
 };
 console.log(logError({ errorData: d }));
 let shoe;
@@ -261,3 +260,16 @@ new Promise((res, rej) => {
     .then(r => {
     console.log(r);
 });
+// Generics
+// Generic are used to create reusable and flexible types, it uses type variable, a special type of variable
+// that works on types rather than values
+// Exp
+function returnType(arg) {
+    return arg;
+}
+// I can pass any type
+let someT = returnType("Ade");
+console.log(someT);
+// generic type
+let someId = returnType;
+// generic classes
