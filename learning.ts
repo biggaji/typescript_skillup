@@ -497,9 +497,62 @@ console.log(someT)
 let someId : <T>(a:T) => T = returnType
 
 // generic interface
-
+// generic parameter of the whole interface
 interface returnTypeFn<T> {
     (a: T):T
 }
 
+let someShit: returnTypeFn<string> = someId
+// or 
+
+interface returntypeFN {
+    <Y>(a: Y) : Y
+}
+
+let someSHIT: returntypeFN = someId
+
+console.log(someSHIT<string>("Ade"))
+
+
 // generic classes
+
+// A generic class has a generic paramter in an <> bracket after the class name
+
+class EatSome<T> {
+    add!: (s: T, k: T) => T;
+}
+
+// initializing
+
+let Fruit = new EatSome<number>();
+Fruit.add = (x, t) => {
+    return x + t;
+}
+
+console.log(Fruit.add(5,2))
+// generic constraint
+
+// More on functions
+// FUnctions are basic building blocks of many applications
+// Types that describe functions
+// The simplest way to describe a function is with a function type expression . These types are syntactically similar to arrow function
+    
+// exp - print username to console
+
+function printUsername(fn: (s:string) => void) {
+    return fn("biggaji");
+}
+
+function usernamePrinter(username: string) {
+    console.log(`Your username is ${username}`);
+}
+
+printUsername(usernamePrinter)
+
+// call signature
+// construct signature
+// generic functions
+
+
+
+// Rest parameter
