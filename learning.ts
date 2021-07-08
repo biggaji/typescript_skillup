@@ -261,7 +261,7 @@ console.log(sayNameType({ name: "Tobitype" }));
 type dataType = "json"| "raw";
 
 interface ResponseTyped {
-    type: string | dataType,
+    type: dataType,
     message?: string,
     code?: number 
 }
@@ -300,7 +300,7 @@ function logError(err: errorRes) {
 }
 
 let d:ResponseTyped = {
-    type: "json",
+    type: "raw",
     message: "Some error message",
     code: 3
 }
@@ -520,14 +520,19 @@ console.log(someSHIT<string>("Ade"))
 
 class EatSome<T> {
     add!: (s: T, k: T) => T;
+    public sub: T;
+    constructor(sub: T) {
+        this.sub = sub;
+    }
 }
 
 // initializing
 
-let Fruit = new EatSome<number>();
+let Fruit = new EatSome<number>(2);
 Fruit.add = (x, t) => {
     return x + t;
 }
+console.log(Fruit.sub)
 
 console.log(Fruit.add(5,2))
 // generic constraint
@@ -556,3 +561,44 @@ printUsername(usernamePrinter)
 
 
 // Rest parameter
+// used to represent an infinte number of arguments into an array
+
+// classes
+// properties are fields in classes
+// class name {
+//     constructor(parameters) {
+        
+//     }
+// }
+
+// Getters and setters
+
+// Classes with interface
+// implement clause is used ti check if a class satisfies a particular interface
+
+interface reading {
+    read(): string
+}
+
+class readMachine implements reading {
+    read() {
+        return "Reading from this text";
+    }
+}
+
+// static member
+// Can only be accessed my the class itself and can also used member visibilty: private, protected
+
+class Test {
+    private static CI() {
+        return 'CI test is running!';
+    }
+    log() {
+        // can only be accessed via The class name
+        return Test.CI();
+    }
+}
+
+let newTest = new Test();
+
+console.log(newTest.log())
