@@ -200,7 +200,7 @@ function logError(err) {
     }
 }
 let d = {
-    type: "json",
+    type: "raw",
     message: "Some error message",
     code: 3
 };
@@ -278,12 +278,16 @@ console.log(someSHIT("Ade"));
 // generic classes
 // A generic class has a generic paramter in an <> bracket after the class name
 class EatSome {
+    constructor(sub) {
+        this.sub = sub;
+    }
 }
 // initializing
-let Fruit = new EatSome();
+let Fruit = new EatSome(2);
 Fruit.add = (x, t) => {
     return x + t;
 };
+console.log(Fruit.sub);
 console.log(Fruit.add(5, 2));
 // generic constraint
 // More on functions
@@ -298,7 +302,21 @@ function usernamePrinter(username) {
     console.log(`Your username is ${username}`);
 }
 printUsername(usernamePrinter);
-// call signature
-// construct signature
-// generic functions
-// Rest parameter
+class readMachine {
+    read() {
+        return "Reading from this text";
+    }
+}
+// static member
+// Can only be accessed my the class itself and can also used member visibilty: private, protected
+class Test {
+    static CI() {
+        return 'CI test is running!';
+    }
+    log() {
+        // can only be accessed via The class name
+        return Test.CI();
+    }
+}
+let newTest = new Test();
+console.log(newTest.log());
